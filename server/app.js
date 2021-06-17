@@ -3,6 +3,7 @@ const path = require("path");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const apiRoutes = require("../routes");
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use(express.static(path.join(__dirname, "../public")));
+
+app.use("/api", apiRoutes);
 
 
 app.get("/", (req, res) => {
