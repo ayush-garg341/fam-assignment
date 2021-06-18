@@ -6,6 +6,9 @@ const cors = require("cors");
 const schedule = require("node-schedule");
 const apiRoutes = require("../routes");
 import VideoScheduler from "../script/videoScheduler";
+import Database from "../libs/mysql";
+
+Database.init();
 
 const app = express();
 
