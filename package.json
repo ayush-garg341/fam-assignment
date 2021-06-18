@@ -8,9 +8,7 @@
 			"scripts": {
 						"start": "nodemon --exec ./node_modules/.bin/babel-node ./server/bin/www",
 						"server": "nodemon --exec ./node_modules/.bin/babel-node ./server/bin/www",
-						"dev": "npm run server",
-						"migrate": "./node_modules/.bin/babel-node ./node_modules/.bin/sequelize db:migrate",
-						"createIndex": "./node_modules/.bin/babel-node ./script/createIndex.js"
+						"dev": "npm run server"
 			},
 			"nodemonConfig": {
 						"watch": [
@@ -36,8 +34,7 @@
 						"eslint-plugin-import": "^2.22.0",
 						"eslint-plugin-jsx-a11y": "^6.3.1",
 						"eslint-plugin-react": "^7.20.6",
-						"nodemon": "^2.0.2",
-						"sequelize-cli": "^6.2.0"
+						"nodemon": "^2.0.2"
 			},
 			"dependencies": {
 						"axios": "^0.19.2",
@@ -48,14 +45,12 @@
 						"cors": "^2.8.5",
 						"crypto-js": "^3.1.9-1",
 						"csurf": "^1.11.0",
-						"db-migrate": "^0.11.11",
-						"db-migrate-mysql": "^2.1.1",
+						"mongodb": "^3.1.1",
+						"mongoose": "5.4.10",
 						"dotenv": "^8.2.0",
 						"express": "^4.17.1",
 						"express-validator": "^6.6.0",
 						"moment": "^2.29.1",
-						"mysql2": "^2.2.5",
-						"node-schedule": "^2.0.0",
-						"sequelize": "^5.22.4"
+						"node-schedule": "^2.0.0"
 			}
 }

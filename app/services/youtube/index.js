@@ -1,5 +1,3 @@
-import * as YoutubeVideoData from "../../../models/youtubevideodata";
-import Database from "../../../libs/mysql";
 
 class YoutubeService{
 
@@ -15,26 +13,14 @@ class YoutubeService{
 	    if(search){
 		const searches = search.split(" ");
 		let searchQuery = "";
-		for(const search of searches){
-		    if(searchQuery===""){
-			searchQuery += `+${search}`;
-		    }
-		    else{
-			searchQuery += ` +${search}`;
-		    }
-		}
-		
-		// if title and description both contains search keyword
-		sql = `SELECT id, title, description, thunbnailUrl, publishedTime FROM YoutubeVideoData WHERE  ( MATCH(title) AGAINST('${searchQuery}' in BOOLEAN MODE) AND MATCH(description) AGAINST('${searchQuery}' in BOOLEAN MODE) ) ORDER BY publishedTime DESC  LIMIT ${offset},${limit} `;
-		
 	    }
 
 	    else{
-		sql = `SELECT id, title, description, thunbnailUrl, publishedTime FROM YoutubeVideoData ORDER BY publishedTime DESC  LIMIT ${offset},${limit}`;
+		
 	    }
 
 
-	    const data = await Database.performRawQuery(sql, {type:"select"});
+	    const data = {};
 	    
 	    return data;
 	}

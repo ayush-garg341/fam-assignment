@@ -12,26 +12,27 @@ services:
       - ./:/usr/src/app
       - ./.node_env:/usr/src/app/.env
     links:
-      - mysql
+      - mongodb
 
 
-  mysql:
-    image: mysql:latest
+  mongodb:
+    image: mongo:4.2.5
     ports:
-      - "${DB_PORT}:3306"
-    expose:
-      - 3306
+      - "${MONGO_PORT}:27017"
+    command: mongod --auth
     volumes:
-      - mysql:/var/lib/mysql
+      - ./mongo:/docker-entrypoint-initdb.d/
     environment:
-      - 'MYSQL_HOST=$MYSQL_HOST'
-      - 'MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD'
-      - 'MYSQL_DATABASE=$MYSQL_DATABASE'
-      - 'MYSQL_USER=$MYSQL_USER'
-      - 'MYSQL_PASSWORD=$MYSQL_PASSWORD'
+      MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD}"
+      MONGO_INITDB_DATABASE: "${FAMPAY_DB}"
+      FAMPAY_DB: "${FAMPAY_DB}"
+      FAMPAY_ADMIN_USER: "${FAMPAY_ADMIN_USER}"
+      FAMPAY_ADMIN_PASSWORD: "${FAMPAY_ADMIN_PASSWORD}"
+      FAMPAY_READ_ONLY_USER: "${FAMPAY_READ_ONLY_USER}"
+      FAMPAY_READ_ONLY_USER_PASSWORD: "${FAMPAY_READ_ONLY_USER_PASSWORD}"
 
 
 ## By default this config uses default local driver,
 ## For custom volumes replace with volume driver configuration.
-volumes:
-  mysql:
+

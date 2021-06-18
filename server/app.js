@@ -6,12 +6,19 @@ const cors = require("cors");
 const schedule = require("node-schedule");
 const apiRoutes = require("../routes");
 import VideoScheduler from "../script/videoScheduler";
-import Database from "../libs/mysql";
+const Mongo = require("../libs/mongo");
 
-Database.init();
 
 const app = express();
+const mongo = new Mongo();
 
+(async function() {
+  try {
+    const connection = await mongo.getConnection();
+  } catch (err) {
+    console.log(err);
+  }
+})();
 
 // data collector scheduler every one minute
 
