@@ -14,12 +14,12 @@ export const db = database => {
 	},
 
 	title:{
-	    type: DataTypes.STRING,
+	    type: DataTypes.TEXT,
 	    allowNull: false
 	},
 
 	description:{
-	    type: DataTypes.STRING,
+	    type: DataTypes.TEXT,
 	    allowNull: false
 	},
 
@@ -41,6 +41,15 @@ export const db = database => {
 	thunbnailUrl:{
 	    type: DataTypes.STRING,
 	    allowNull: false
+	},
+
+	createdAt: {
+            allowNull: false,
+            type: DataTypes.DATE
+	},
+	updatedAt: {
+            allowNull: false,
+            type: DataTypes.DATE
 	}
 	
     });
