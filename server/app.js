@@ -3,9 +3,19 @@ const path = require("path");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const schedule = require("node-schedule");
 const apiRoutes = require("../routes");
+import VideoScheduler from "../script/videoScheduler";
 
 const app = express();
+
+
+// data collector scheduler every one minute
+
+schedule.scheduleJob("*/1 * * * *", () => {
+    console.log("every one min");
+    VideoScheduler();
+});
 
 app.use(express.json({ limit: "50mb" }));
 app.use(
