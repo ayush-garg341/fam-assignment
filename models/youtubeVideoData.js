@@ -19,4 +19,14 @@ const YoutubeVideoDataSchema = new mongoose.Schema(
     }
 );
 
+
+YoutubeVideoDataSchema.index({
+    title: "text",
+    description: "text"
+});
+
+YoutubeVideoDataSchema.index({
+    publishTime: 1
+});
+
 module.exports = mongoose.model("YoutubeVideoData", YoutubeVideoDataSchema);

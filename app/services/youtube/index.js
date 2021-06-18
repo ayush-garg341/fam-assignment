@@ -33,19 +33,22 @@ class YoutubeService{
 	    const offset = intCountPerPage * (intPageNo-1);
 	    const limit = intCountPerPage;
 
-	    let sql;
+	    let query;
 	    
 	    if(search){
 		const searches = search.split(" ");
-		let searchQuery = "";
+		let searchQ = "";
+		for(const search of searches){
+		    searchQ += ` \"${search}\" `;
+		}
+		query = { $text: { $search: searchQ }};
 	    }
 
 	    else{
-		
+		query = {};
 	    }
 
-
-	    const data = {};
+	    const data = youtubeVideoModel.find(query).sort({publishTime: -1}).skip(offset).limit(limit);
 	    
 	    return data;
 	}
