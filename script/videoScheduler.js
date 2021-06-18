@@ -1,17 +1,14 @@
+// import YoutubeService from "../app/services/youtube";
+// import Mongo from "../libs/mongo";
 const axios = require("axios");
 const dotenv = require("dotenv");
 const moment = require("moment");
-const youtubeVideoModel = require("../models/youtubeVideoData");
-const Mongo = require("../libs/mongo");
-const mongo = new Mongo();
 
 dotenv.config();
 
-const fetchVideos = async() => {
+const fetchVideos = async(worker) => {
 
     try{
-	
-	const connection = await mongo.getConnection();
 	
 	const type="video";
 	const maxResult = 2;
@@ -22,24 +19,27 @@ const fetchVideos = async() => {
 	
 	const response = await axios({
 	    url: URL,
-	    method: 'get',
+	    method: 'get'
 	});
 
-	for(const result of response.data.items){
-	    
+	if(response.data.items){   
+	    let items = [];
+	    for(const result of response.data.items){
 	    const {snippet:{publishedAt, title, description, channelTitle, publishTime, thumbnails={}}={}} = result || {};
-
-	    const response = await youtubeVideoModel.create({
-		publishedAt,
-		title,
-		description,
-		channelTitle,
-		publishTime,
-		thumbnails
-	    });
+		items.push({
+		    publishedAt,
+		    title,
+		    description,
+		    channelTitle,
+		    publishTime,
+		    thumbnails
+		});
+	    }
+	    worker.push({message:items});
 	}
-
-	
+	else{
+	    console.log(response.data.error);
+	}
 	
     }
     catch(err){
@@ -47,6 +47,6 @@ const fetchVideos = async() => {
     }
 };
 
-fetchVideos();
+//fetchVideos();
 
-// export default fetchVideos;
+export default fetchVideos;

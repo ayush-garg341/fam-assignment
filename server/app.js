@@ -3,28 +3,30 @@ const path = require("path");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const schedule = require("node-schedule");
+const cron = require('node-cron');
+const shell = require('shelljs');
 const apiRoutes = require("../routes");
-import VideoScheduler from "../script/videoScheduler";
-const Mongo = require("../libs/mongo");
+//import VideoScheduler from "../script/videoScheduler";
+import Mongo from "../libs/mongo";
+import { QueManager } from "../queue";
 
 
 const app = express();
-const mongo = new Mongo();
+const worker = new QueManager(true);
 
 (async function() {
   try {
-    const connection = await mongo.getConnection();
+      const connection = await Mongo.getConnection();
   } catch (err) {
-    console.log(err);
+      console.log(err);
   }
 })();
 
 // data collector scheduler every one minute
 
-schedule.scheduleJob("*/1 * * * *", () => {
-    console.log("every one min");
-    //VideoScheduler();
+cron.schedule('*/10 * * * * *', () => {
+    console.log('running a task every 10 sec');
+    //VideoScheduler(worker);
 });
 
 app.use(express.json({ limit: "50mb" }));

@@ -8,7 +8,8 @@
 			"scripts": {
 						"start": "nodemon --exec ./node_modules/.bin/babel-node ./server/bin/www",
 						"server": "nodemon --exec ./node_modules/.bin/babel-node ./server/bin/www",
-						"dev": "npm run server"
+			    "dev": "npm run server",
+			    "queue": "./node_modules/.bin/babel-node ./script/queue.js"
 			},
 			"nodemonConfig": {
 						"watch": [
@@ -39,18 +40,20 @@
 			"dependencies": {
 						"axios": "^0.19.2",
 						"bcrypt": "^4.0.1",
+						"bee-queue": "^1.4.0",
 						"concurrently": "^5.3.0",
 						"cookie-parser": "^1.4.5",
 						"cookie-session": "^1.4.0",
 						"cors": "^2.8.5",
 						"crypto-js": "^3.1.9-1",
 						"csurf": "^1.11.0",
-						"mongodb": "^3.1.1",
-						"mongoose": "5.4.10",
 						"dotenv": "^8.2.0",
 						"express": "^4.17.1",
 						"express-validator": "^6.6.0",
 						"moment": "^2.29.1",
-						"node-schedule": "^2.0.0"
+						"mongodb": "^3.1.1",
+						"mongoose": "5.4.10",
+						"node-cron": "^3.0.0",
+						"shelljs": "^0.8.4"
 			}
 }

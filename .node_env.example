@@ -11,3 +11,7 @@ DB_DIALECT=mongodb
 
 YOUTUBE_API_KEY=AIzaSyBD9yEafuPHHGUC_zQ2jR-0P8YBanrIzv4
 YOUTUBE_VIDEO_BASE_URL=https://www.googleapis.com/youtube/v3/search
+
+QUEUE_VIDEO=video
+QUEUE_HOST=redis
+QUEUE_PORT=6379
