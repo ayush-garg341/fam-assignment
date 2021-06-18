@@ -8,9 +8,9 @@
 			"scripts": {
 						"start": "nodemon --exec ./node_modules/.bin/babel-node ./server/bin/www",
 						"server": "nodemon --exec ./node_modules/.bin/babel-node ./server/bin/www",
-			    "dev": "npm run server",
-			    "migrate": "./node_modules/.bin/babel-node ./node_modules/.bin/sequelize db:migrate",
-			    "createIndex": "./node_modules/.bin/babel-node ./script/createIndex.js"
+						"dev": "npm run server",
+						"migrate": "./node_modules/.bin/babel-node ./node_modules/.bin/sequelize db:migrate",
+						"createIndex": "./node_modules/.bin/babel-node ./script/createIndex.js"
 			},
 			"nodemonConfig": {
 						"watch": [
@@ -53,6 +53,7 @@
 						"dotenv": "^8.2.0",
 						"express": "^4.17.1",
 						"express-validator": "^6.6.0",
+						"moment": "^2.29.1",
 						"mysql2": "^2.2.5",
 						"node-schedule": "^2.0.0",
 						"sequelize": "^5.22.4"

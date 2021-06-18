@@ -2,11 +2,22 @@ import Database from "../libs/mysql";
 
 const createIndex = async() => {
     try{
-	const res = await Database.performRawQuery(
-	    "ALTER TABLE `YoutubeVideoData` ADD FULLTEXT(title, description)"
+	await Database.performRawQuery(
+	    `CREATE FULLTEXT INDEX title_idx ON YoutubeVideoData(title)`
+	);
+
+	await Database.performRawQuery(
+	    `CREATE FULLTEXT INDEX description_idx ON YoutubeVideoData(description)`
+	);
+
+	// await Database.performRawQuery(
+	//     `CREATE  INDEX publish_time_idx ON YoutubeVideoData(publishedTime)`
+	// );
+
+	await Database.performRawQuery(
+	    `CREATE FULLTEXT INDEX title_desc_idx ON YoutubeVideoData(title, description)`
 	);
 	
-	console.log("res === >> ", res);
     }
     catch(err){
 	console.log("err");

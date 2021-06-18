@@ -42,9 +42,13 @@ class Database {
   static initTransaction = () => Database.connection.transaction();
 
 
-  static performRawQuery = async(query, options = {}) => {
-    const database = await Database.getDatabase();
-    return await database.queryInterface.sequelize.query(query, options);
+    static performRawQuery = async(query, options = {}) => {
+	const {type = ""} = options;
+	const database = await Database.getDatabase();
+	if(type==="select"){
+	    return await database.queryInterface.sequelize.query(query, {type: database.queryInterface.sequelize.QueryTypes.SELECT});
+	}
+	return await database.queryInterface.sequelize.query(query, options);
   };
 
   static init = async () => {

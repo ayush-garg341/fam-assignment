@@ -17,7 +17,7 @@ const app = express();
 
 schedule.scheduleJob("*/1 * * * *", () => {
     console.log("every one min");
-    VideoScheduler();
+    //VideoScheduler();
 });
 
 app.use(express.json({ limit: "50mb" }));
