@@ -14,7 +14,7 @@ const fetchVideos = async(worker) => {
 	    publishedAfter = latestRecord[0].publishTime.toISOString();
 	}
 	else{
-	    const date = new Date("Jun 15 2021");
+	    const date = new Date();
 	    publishedAfter = date.toISOString();
 	}
 
@@ -31,7 +31,7 @@ const fetchVideos = async(worker) => {
 	const key =  process.env.YOUTUBE_API_KEY.split(",")[apiKeyPos];
 	
 	const type="video";
-	const maxResult = 2;
+	const maxResult = 50;
 	const query = "cricket";
 	const baseURL = process.env.YOUTUBE_VIDEO_BASE_URL;
 	const URL = `${baseURL}?key=${key}&type=${type}&order=date&part=snippet&maxResults=${maxResult}&q=${query}&publishedAfter=${publishedAfter}`;

@@ -13,7 +13,10 @@ import { QueManager } from "../queue";
 
 
 const app = express();
-const worker = new QueManager(true);
+const worker = new QueManager(false);
+
+// worker reciever
+QueueRunner();
 
 (async function() {
   try {
@@ -27,10 +30,6 @@ const worker = new QueManager(true);
 
 cron.schedule('*/10 * * * * *', () => {
     VideoScheduler(worker);
-});
-
-cron.schedule('*/1 * * * * *', () => {
-    QueueRunner();
 });
 
 app.use(express.json({ limit: "50mb" }));
