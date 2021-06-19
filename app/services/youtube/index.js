@@ -1,4 +1,5 @@
 const youtubeVideoModel = require("../../../models/youtubeVideoData");
+const apiKeyModel = require("../../../models/apiKeyPos");
 
 class YoutubeService{
 
@@ -69,6 +70,43 @@ class YoutubeService{
 	    return 0;
 	}
     };
+
+
+    getApiKeyPos = async() => {
+	try{
+	    const data = apiKeyModel.find({});
+	    return data;
+	}
+	catch(err){
+	    console.log("err ----- >>>>> ", err);
+	    return 0;
+	}
+    }
+
+
+    insertApiKeyPos = async(apiKeyPos) => {
+	try{
+	    const data = apiKeyModel.create({position:apiKeyPos});
+	    return data;
+	}
+	catch(err){
+	    console.log("err ----- >>>>> ", err);
+	    return 0;
+	}
+    }
+
+
+    updateApiKeyPos = async(prevPos, nextPos) => {
+	try{
+	    const data = apiKeyModel.findOneAndUpdate({position: prevPos}, {position:nextPos});
+	    return 1;
+	}
+	catch(err){
+	    console.log("err ----- >>>>> ", err);
+	    return 0;
+	}
+     }
+    
     
 }
 
