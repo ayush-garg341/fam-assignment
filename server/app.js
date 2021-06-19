@@ -6,7 +6,8 @@ const cors = require("cors");
 const cron = require('node-cron');
 const shell = require('shelljs');
 const apiRoutes = require("../routes");
-//import VideoScheduler from "../script/videoScheduler";
+import VideoScheduler from "../script/videoScheduler";
+import QueueRunner from "../script/queue.js";
 import Mongo from "../libs/mongo";
 import { QueManager } from "../queue";
 
@@ -22,11 +23,14 @@ const worker = new QueManager(true);
   }
 })();
 
-// data collector scheduler every one minute
+// data collector scheduler every 10 seconds
 
 cron.schedule('*/10 * * * * *', () => {
-    console.log('running a task every 10 sec');
-    //VideoScheduler(worker);
+    VideoScheduler(worker);
+});
+
+cron.schedule('*/1 * * * * *', () => {
+    QueueRunner();
 });
 
 app.use(express.json({ limit: "50mb" }));

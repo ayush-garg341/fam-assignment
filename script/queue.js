@@ -5,4 +5,6 @@ const queueRunner = () => {
   worker.recieve();
 
 };
-queueRunner();
+//queueRunner();
+
+export default queueRunner;

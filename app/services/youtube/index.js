@@ -57,6 +57,18 @@ class YoutubeService{
 	    return {};
 	}
     };
+
+
+    getLatestRecord = async() => {
+	try{
+	    const data = youtubeVideoModel.find({}).limit(1).sort({$natural:-1});
+	    return data;
+	}
+	catch(err){
+	    console.log("err ----- >>>>> ", err);
+	    return 0;
+	}
+    };
     
 }
 

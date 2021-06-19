@@ -1,7 +1,7 @@
 import YoutubeService from "../app/services/youtube";
 const Queue = require("bee-queue");
 const dotenv = require("dotenv");
-import Mongo from "../libs/mongo";
+//import Mongo from "../libs/mongo";
 dotenv.config();
 
 export class QueManager {
@@ -26,7 +26,7 @@ export class QueManager {
   };
 
     recieve = async () => {
-	const connection = await Mongo.getConnection();
+	//const connection = await Mongo.getConnection();
     this.videoDataQueue.process(async (job) => {
 	console.log("Processing job " + job.data.message, job.data.message[0]);
 	const res = await YoutubeService.createBulkVidoeData(job.data.message);
