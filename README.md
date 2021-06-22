@@ -2,8 +2,9 @@
 
 
 ## Preferred framework, language and database used
-#### 1. Node Js -> excellent support for asynchronous task.
+#### 1. Node Js -> works great in systems using the microservices architecture or containerization where the scalability and flexibility can be achieved quickly and easily.
 #### 2. MongoDb -> Document based structure, good support for text based search.
+#### 3. Bee-queue -> To achieve asynchronism.
 
 
 ## Steps to run the project
